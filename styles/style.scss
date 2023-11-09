@@ -54,16 +54,16 @@ header {
             display: none;
             @include backgroundImage($backgroundImage: url(/media/icons8-arrow-down-40.png));
             width: 40px;
-            aspect-ratio: 1;
-            margin-left: 8em;
+            
+            margin-left: 4.8em;
+            margin-right: 2em;
             cursor: pointer;
-            transform: rotate(-90deg);
-            transition: 1.5s ease;
+            
         }
 
         #searchBar {
             display: none;
-            margin-left: 1em;
+            margin-left: 2em;
             width: 600px;
             height: 50px;
             border-radius: 20px;
@@ -79,6 +79,7 @@ header {
         }
         
         #searchIcon {
+            
             padding: 2em;
             width: 100px;
             aspect-ratio: 1;
@@ -219,15 +220,18 @@ main {
 @keyframes showXButton {
     from {
         opacity: 0;
+        
     }
     to {
         opacity: 1;
+        transform: rotate(-90deg);
     }
 }
 
 @keyframes hideXButton {
     from {
         opacity: 1;
+        transform: rotate(-90deg);
     }
     to {
         opacity: 0;
