@@ -1,0 +1,196 @@
+body {
+  width: 100%;
+  aspect-ratio: 2;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-image: url(/media/jakob-owens-CiUR8zISX60-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(26, 25, 24, 0.952);
+  background-blend-mode: lighten;
+}
+
+header {
+  padding-top: 1em;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+header nav {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  border-radius: 30px;
+  background-color: rgba(26, 25, 24, 0.747);
+}
+header nav #hideButton {
+  display: none;
+  background-image: url(/media/icons8-arrow-down-40.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 40px;
+  aspect-ratio: 1;
+  margin-left: 8em;
+  cursor: pointer;
+  transform: rotate(-90deg);
+  transition: 1.5s ease;
+}
+header nav #searchBar {
+  display: none;
+  margin-left: 1em;
+  width: 600px;
+  height: 50px;
+  border-radius: 20px;
+  align-self: center;
+  text-align: center;
+  font-size: large;
+  transition: 1.5s ease;
+}
+header nav #searchBar:focus {
+  outline: none;
+  box-shadow: white 0px 5px 20px;
+}
+header nav #searchIcon {
+  padding: 2em;
+  width: 100px;
+  aspect-ratio: 1;
+  background-image: url(/media/icons8-search-100-white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+main {
+  width: 100%;
+  aspect-ratio: 2;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main form {
+  background-color: rgba(26, 25, 24, 0.952);
+  padding: 5em;
+  margin-top: -10em;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5em;
+  position: relative;
+}
+main form h1 {
+  color: white;
+}
+main form .container input {
+  padding: 0.9em;
+  border-radius: 15px;
+  width: 400px;
+  font-size: medium;
+  text-align: center;
+}
+main form .container input:focus {
+  outline: none;
+  box-shadow: white 0px 5px 20px;
+}
+main form .container input:focus ~ .floating-placeholder {
+  animation: moveTextUp 1.5s forwards ease;
+}
+main form .floating-placeholder {
+  margin-top: 1em;
+  width: 6em;
+  position: absolute;
+  left: 41%;
+  text-align: center;
+  font-size: large;
+}
+main form button {
+  padding: 0.9em;
+  border-radius: 15px;
+  width: 400px;
+  font-size: medium;
+  text-align: center;
+}
+
+.textDown input:not(:focus) ~ .floating-placeholder {
+  animation: moveTextDown 1.5s forwards ease;
+}
+
+.delay input:not(:focus) ~ .floating-placeholder {
+  animation-delay: -1.5s;
+}
+
+.expandSearchBar {
+  animation: showSearchBar 1.5s forwards ease;
+}
+
+.hideSearchBar {
+  animation: hideSearchBar 1.5s forwards ease;
+}
+
+.hideXButton {
+  animation: hideXButton 1.5s forwards ease;
+}
+
+.showXButton {
+  animation: showXButton 1.5s forwards ease;
+}
+
+@keyframes moveTextUp {
+  from {
+    transform: translateY(0);
+    color: black;
+  }
+  to {
+    transform: translateY(-280%);
+    color: white;
+  }
+}
+@keyframes moveTextDown {
+  from {
+    transform: translateY(-280%);
+    color: white;
+  }
+  to {
+    transform: translateY(0);
+    color: black;
+  }
+}
+@keyframes showSearchBar {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 600px;
+  }
+}
+@keyframes hideSearchBar {
+  from {
+    width: 600px;
+  }
+  to {
+    width: 0px;
+  }
+}
+@keyframes showXButton {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes hideXButton {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}/*# sourceMappingURL=style.css.map */
