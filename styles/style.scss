@@ -1,239 +1,295 @@
 @mixin fullscreen {
-    width: 100%;
-    aspect-ratio: 2;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  aspect-ratio: 2;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 @mixin formComponentSize {
-    padding: 0.9em;
-            border-radius: 15px;
-            width: 400px;
-            font-size: medium;    
-            text-align: center    
+  padding: 0.9em;
+  border-radius: 15px;
+  width: 400px;
+  font-size: medium;
+  text-align: center;
 }
 
 @mixin focusStyle {
-    outline: none;
-    box-shadow:white 0px 5px 20px;
+  outline: none;
+  box-shadow: white 0px 5px 20px;
 }
 
-@mixin backgroundImage ($backgroundImage: url(/media/icons8-arrow-down-40.png)){
-    background-image: $backgroundImage;
-    background-repeat: no-repeat;
-    background-position: center;
+@mixin backgroundImage($backgroundImage: url(/media/icons8-arrow-down-40.png)) {
+  background-image: $backgroundImage;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin tableStyle {
+  border: 1px solid $textColor;
+  padding: 2em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
 }
 
 $backdropColor: rgba(26, 25, 24, 0.952);
 $transparentBackdrop: rgba(26, 25, 24, 0.747);
+$textColor: white;
 
 body {
-    @include fullscreen;
-    @include backgroundImage($backgroundImage: url(/media/jakob-owens-CiUR8zISX60-unsplash.jpg));
-    background-color: $backdropColor;
-    background-blend-mode: lighten;
-}
+  @include fullscreen;
+  @include backgroundImage(
+    $backgroundImage: url(/media/jakob-owens-CiUR8zISX60-unsplash.jpg)
+  );
+  background-color: $backdropColor;
+  background-blend-mode: lighten;
 
-header {
+  header {
     padding-top: 1em;
     width: 100%;
     height: fit-content;
     display: flex;
     justify-content: center;
-    
 
     nav {
-        width: fit-content;
-        display: flex;
-        flex-direction: row;
-        border-radius: 30px;
-        background-color: $transparentBackdrop;
+      width: fit-content;
+      display: flex;
+      flex-direction: row;
+      border-radius: 30px;
+      background-color: $transparentBackdrop;
 
-        #hideButton {
-            display: none;
-            @include backgroundImage($backgroundImage: url(/media/icons8-arrow-down-40.png));
-            width: 40px;
-            
-            margin-left: 4.8em;
-            margin-right: 2em;
-            cursor: pointer;
-            
+      #hideButton {
+        display: none;
+        @include backgroundImage(
+          $backgroundImage: url(/media/icons8-arrow-down-40.png)
+        );
+        width: 40px;
+
+        margin-left: 4.8em;
+        margin-right: 2em;
+        cursor: pointer;
+      }
+
+      #searchBar {
+        display: none;
+        margin-left: 2em;
+        width: 600px;
+        height: 50px;
+        border-radius: 20px;
+        align-self: center;
+        text-align: center;
+        font-size: large;
+        transition: 1.5s ease;
+
+        &:focus {
+          @include focusStyle;
         }
+      }
 
-        #searchBar {
-            display: none;
-            margin-left: 2em;
-            width: 600px;
-            height: 50px;
-            border-radius: 20px;
-            align-self: center;
-            text-align: center;
-            font-size: large;
-            transition: 1.5s ease;
-            
-            &:focus {
-                @include focusStyle;
-            }
+      #searchIcon {
+        padding: 2em;
+        width: 100px;
+        aspect-ratio: 1;
 
+        @include backgroundImage(
+          $backgroundImage: url(/media/icons8-search-100-white.png)
+        );
+        cursor: pointer;
+
+        &:hover {
+          @include backgroundImage(
+            $backgroundImage: url(/media/icons8-search-100-green.png)
+          );
         }
-        
-        #searchIcon {
-            
-            padding: 2em;
-            width: 100px;
-            aspect-ratio: 1;
-            @include backgroundImage($backgroundImage: url(/media/icons8-search-100-white.png));
-            cursor: pointer;
-        }
-
+      }
     }
+  }
 
-}
-
-
-
-main {
+  main {
     @include fullscreen;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
-    form {
-        background-color: $backdropColor;
-        padding: 5em;
-        margin-top: -10em;
-        border-radius: 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3.5em;
-        position: relative;
 
-        h1 {
-            color: white;
-            
+    #searchResults {
+      background-color: $backdropColor;
+      padding: 5em;
+      padding-top: 2em;
+      margin-top: -20em;
+      border-radius: 15px;
+      height: fit-content;
+      max-height: 450px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: $textColor;
+      width: 500px;
+
+      display: none;
+
+      h2 {
+        color: $textColor;
+        padding-bottom: 2em;
+      }
+
+      table {
+        border: 1px solid $textColor;
+
+        th {
+          @include tableStyle;
         }
 
-        .container {
-            
-            
-            input {
-                @include formComponentSize;
-                
-                &:focus {
-                    @include focusStyle;
-                    
-                }
-                &:focus ~ .floating-placeholder {
-                    animation: moveTextUp 1.5s forwards ease;
-                }
-            }
-
-        }
-        .floating-placeholder {
-            margin-top: 1em;
-            width: 6em;
-            position: absolute;
-            left: 41%;
-            text-align: center;
-            font-size: large;
+        tr {
+          border: 1px solid $textColor;
         }
 
-        button {
-            @include formComponentSize;
+        td {
+          @include tableStyle;
         }
+      }
 
+      #removeData {
+        @include formComponentSize;
+        margin-top: 5em;
+      }
     }
+  }
+
+  form {
+    background-color: $backdropColor;
+    padding: 5em;
+    margin-top: -6em;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
+    position: relative;
+
+    h1 {
+      color: $textColor;
+    }
+
+    input {
+      @include formComponentSize;
+
+      &:focus {
+        @include focusStyle;
+      }
+      &::placeholder {
+        font-size: larger;
+      }
+    }
+
+    button {
+      @include formComponentSize;
+    }
+  }
 }
 
-.textDown input:not(:focus) ~ .floating-placeholder{
-    animation: moveTextDown 1.5s forwards ease;
-    
-}
+// .textDown input:not(:focus) ~ .floating-placeholder {
+//   animation: moveTextDown 1.5s forwards ease;
+// }
 
-.delay input:not(:focus) ~ .floating-placeholder{
-    animation-delay: -1.5s;
-}
+// .textInsideFocus input:focus ~ .floating-placeholder {
+//   animation: moveTextUp 1.5s forwards ease;
+// }
+
+// .textInsideNoFocus input:not(:focus) ~ .floating-placeholder {
+//   animation: moveTextUp 1.5s forwards ease;
+// }
+
+// .textToSide input:focus ~ .floating-placeholder {
+//   animation: moveTextToSide 1.5s forwards ease;
+// }
+
+// .delay input:not(:focus) ~ .floating-placeholder {
+//   animation-delay: -1.5s;
+// }
 
 .expandSearchBar {
-    animation: showSearchBar 1.5s forwards ease;
+  animation: showSearchBar 1.5s forwards ease;
 }
 
 .hideSearchBar {
-    animation: hideSearchBar 1.5s forwards ease;
+  animation: hideSearchBar 1.5s forwards ease;
 }
 
 .hideXButton {
-    animation: hideXButton 1.5s forwards ease;
+  animation: hideXButton 1.5s forwards ease;
 }
 
 .showXButton {
-    animation: showXButton 1.5s forwards ease;
+  animation: showXButton 1.5s forwards ease;
 }
 
-@keyframes moveTextUp {
-    from {
-        transform: translateY(0);
-        color: black;
-        
-    }
-    to {
-        transform: translateY(-280%);
-        color: white;
-        
-    }
+.badSearchValue::placeholder {
+  color: red;
+  font-size: 1.5em;
 }
 
-@keyframes moveTextDown {
-    from {
-        transform: translateY(-280%);
-        color: white;
-        
-    }
-    to {
-        transform: translateY(0);
-        color: black;
-        
-    }
+.fadeIn {
+  animation: fadeIn 0.3s forwards ease;
+}
+
+.fadeOut {
+  animation: fadeOut 0.3s forwards ease;
 }
 
 @keyframes showSearchBar {
-    from {
-        width: 0px;
-    }
-    to {
-        width: 600px;
-    }
+  from {
+    width: 0px;
+  }
+  to {
+    width: 600px;
+  }
 }
 
 @keyframes hideSearchBar {
-    from {
-        width: 600px;
-    }
-    to {
-        width: 0px;
-    }
+  from {
+    width: 600px;
+  }
+  to {
+    width: 0px;
+  }
 }
 
 @keyframes showXButton {
-    from {
-        opacity: 0;
-        
-    }
-    to {
-        opacity: 1;
-        transform: rotate(-90deg);
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-90deg);
+  }
 }
 
 @keyframes hideXButton {
-    from {
-        opacity: 1;
-        transform: rotate(-90deg);
-    }
-    to {
-        opacity: 0;
-    }
+  from {
+    opacity: 1;
+    transform: rotate(-90deg);
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

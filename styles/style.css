@@ -10,8 +10,7 @@ body {
   background-color: rgba(26, 25, 24, 0.952);
   background-blend-mode: lighten;
 }
-
-header {
+body header {
   padding-top: 1em;
   width: 100%;
   height: -moz-fit-content;
@@ -19,7 +18,7 @@ header {
   display: flex;
   justify-content: center;
 }
-header nav {
+body header nav {
   width: -moz-fit-content;
   width: fit-content;
   display: flex;
@@ -27,7 +26,7 @@ header nav {
   border-radius: 30px;
   background-color: rgba(26, 25, 24, 0.747);
 }
-header nav #hideButton {
+body header nav #hideButton {
   display: none;
   background-image: url(/media/icons8-arrow-down-40.png);
   background-repeat: no-repeat;
@@ -37,7 +36,7 @@ header nav #hideButton {
   margin-right: 2em;
   cursor: pointer;
 }
-header nav #searchBar {
+body header nav #searchBar {
   display: none;
   margin-left: 2em;
   width: 600px;
@@ -48,11 +47,11 @@ header nav #searchBar {
   font-size: large;
   transition: 1.5s ease;
 }
-header nav #searchBar:focus {
+body header nav #searchBar:focus {
   outline: none;
   box-shadow: white 0px 5px 20px;
 }
-header nav #searchIcon {
+body header nav #searchIcon {
   padding: 2em;
   width: 100px;
   aspect-ratio: 1;
@@ -61,8 +60,12 @@ header nav #searchIcon {
   background-position: center;
   cursor: pointer;
 }
-
-main {
+body header nav #searchIcon:hover {
+  background-image: url(/media/icons8-search-100-green.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+body main {
   width: 100%;
   aspect-ratio: 2;
   overflow: hidden;
@@ -72,56 +75,91 @@ main {
   justify-content: center;
   align-items: center;
 }
-main form {
+body main #searchResults {
   background-color: rgba(26, 25, 24, 0.952);
   padding: 5em;
-  margin-top: -10em;
+  padding-top: 2em;
+  margin-top: -20em;
+  border-radius: 15px;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 450px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 500px;
+  display: none;
+}
+body main #searchResults h2 {
+  color: white;
+  padding-bottom: 2em;
+}
+body main #searchResults table {
+  border: 1px solid white;
+}
+body main #searchResults table th {
+  border: 1px solid white;
+  padding: 2em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+body main #searchResults table tr {
+  border: 1px solid white;
+}
+body main #searchResults table td {
+  border: 1px solid white;
+  padding: 2em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+body main #searchResults #removeData {
+  padding: 0.9em;
+  border-radius: 15px;
+  width: 400px;
+  font-size: medium;
+  text-align: center;
+  margin-top: 5em;
+}
+body form {
+  background-color: rgba(26, 25, 24, 0.952);
+  padding: 5em;
+  margin-top: -6em;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.5em;
+  gap: 3em;
   position: relative;
 }
-main form h1 {
+body form h1 {
   color: white;
 }
-main form .container input {
+body form input {
   padding: 0.9em;
   border-radius: 15px;
   width: 400px;
   font-size: medium;
   text-align: center;
 }
-main form .container input:focus {
+body form input:focus {
   outline: none;
   box-shadow: white 0px 5px 20px;
 }
-main form .container input:focus ~ .floating-placeholder {
-  animation: moveTextUp 1.5s forwards ease;
+body form input::-moz-placeholder {
+  font-size: larger;
 }
-main form .floating-placeholder {
-  margin-top: 1em;
-  width: 6em;
-  position: absolute;
-  left: 41%;
-  text-align: center;
-  font-size: large;
+body form input::placeholder {
+  font-size: larger;
 }
-main form button {
+body form button {
   padding: 0.9em;
   border-radius: 15px;
   width: 400px;
   font-size: medium;
   text-align: center;
-}
-
-.textDown input:not(:focus) ~ .floating-placeholder {
-  animation: moveTextDown 1.5s forwards ease;
-}
-
-.delay input:not(:focus) ~ .floating-placeholder {
-  animation-delay: -1.5s;
 }
 
 .expandSearchBar {
@@ -140,26 +178,24 @@ main form button {
   animation: showXButton 1.5s forwards ease;
 }
 
-@keyframes moveTextUp {
-  from {
-    transform: translateY(0);
-    color: black;
-  }
-  to {
-    transform: translateY(-280%);
-    color: white;
-  }
+.badSearchValue::-moz-placeholder {
+  color: red;
+  font-size: 1.5em;
 }
-@keyframes moveTextDown {
-  from {
-    transform: translateY(-280%);
-    color: white;
-  }
-  to {
-    transform: translateY(0);
-    color: black;
-  }
+
+.badSearchValue::placeholder {
+  color: red;
+  font-size: 1.5em;
 }
+
+.fadeIn {
+  animation: fadeIn 0.3s forwards ease;
+}
+
+.fadeOut {
+  animation: fadeOut 0.3s forwards ease;
+}
+
 @keyframes showSearchBar {
   from {
     width: 0px;
@@ -189,6 +225,22 @@ main form button {
   from {
     opacity: 1;
     transform: rotate(-90deg);
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
   to {
     opacity: 0;

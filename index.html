@@ -1,40 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/style.css" />
-    <title>Document</title>
+    <title>STK Arkiv</title>
   </head>
   <body>
     <header>
       <nav>
         <div id="hideButton"></div>
-        <input id="searchBar" placeholder="Ange vad du vill söka efter" />
+        <input
+          id="searchBar"
+          placeholder="Sök efter TV-program med titel eller * för att se alla titlar"
+        />
 
         <div id="searchIcon"></div>
       </nav>
     </header>
     <main>
+      <section id="searchResults">
+        <h2>Sökresultat</h2>
+
+        <table
+          id="displayResults"
+          summary="En tabell som beskriver inmatad data om TV-Program."
+        >
+          <tr>
+            <th>Titel</th>
+            <th>Beskrivning</th>
+            <th>Åldergräns</th>
+          </tr>
+        </table>
+
+        <button id="removeData">Rensa data</button>
+      </section>
       <form>
         <h1>STKs arkiv av TV-Program</h1>
-        <span class="container">
-          <input class="textField" type="text" required />
 
-          <span class="floating-placeholder">Titel</span>
-        </span>
-        <span class="container">
-          <input class="textField" type="text" required />
+        <input class="textField" type="text" required placeholder="Titel" />
 
-          <span class="floating-placeholder">Beskrivning</span>
-        </span>
-        <span class="container">
-          <input class="textField" type="text" required />
+        <input
+          class="textField"
+          type="text"
+          required
+          placeholder="Beskrivning"
+        />
 
-          <span class="floating-placeholder">Åldergräns</span>
-        </span>
+        <input
+          class="textField"
+          type="text"
+          required
+          placeholder="Åldergräns"
+        />
 
-        <button>Skicka data</button>
+        <button id="sendData">Skicka data</button>
       </form>
     </main>
 
