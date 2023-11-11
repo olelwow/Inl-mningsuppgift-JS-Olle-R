@@ -68,6 +68,9 @@ body {
         margin-left: 4.8em;
         margin-right: 2em;
         cursor: pointer;
+
+        &:hover {
+        }
       }
 
       #searchBar {
@@ -188,26 +191,6 @@ body {
     }
   }
 }
-
-// .textDown input:not(:focus) ~ .floating-placeholder {
-//   animation: moveTextDown 1.5s forwards ease;
-// }
-
-// .textInsideFocus input:focus ~ .floating-placeholder {
-//   animation: moveTextUp 1.5s forwards ease;
-// }
-
-// .textInsideNoFocus input:not(:focus) ~ .floating-placeholder {
-//   animation: moveTextUp 1.5s forwards ease;
-// }
-
-// .textToSide input:focus ~ .floating-placeholder {
-//   animation: moveTextToSide 1.5s forwards ease;
-// }
-
-// .delay input:not(:focus) ~ .floating-placeholder {
-//   animation-delay: -1.5s;
-// }
 
 .expandSearchBar {
   animation: showSearchBar 1.5s forwards ease;

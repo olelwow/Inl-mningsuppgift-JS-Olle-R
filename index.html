@@ -9,13 +9,13 @@
   <body>
     <header>
       <nav>
-        <div id="hideButton"></div>
+        <div id="hideButton" tabindex="1"></div>
         <input
           id="searchBar"
           placeholder="Sök efter TV-program med titel eller * för att se alla titlar"
         />
 
-        <div id="searchIcon"></div>
+        <div tabindex="0" id="searchIcon"></div>
       </nav>
     </header>
     <main>
@@ -33,7 +33,7 @@
           </tr>
         </table>
 
-        <button id="removeData">Rensa data</button>
+        <button id="removeData">Rensa all data</button>
       </section>
       <form>
         <h1>STKs arkiv av TV-Program</h1>

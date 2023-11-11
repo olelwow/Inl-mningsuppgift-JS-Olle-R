@@ -19,6 +19,54 @@ const searchResults = document.getElementById("searchResults");
 const form = document.getElementsByTagName("form");
 // Formulär
 
+let displayNewInfoAndHidePreviousInfo = (value) => {
+    if (value === "showSearchResults") {
+        searchBar.classList.remove("hideSearchBar");
+        searchBar.style.display = "block";
+        searchBar.classList.add("expandSearchBar");
+
+        hideButton.classList.remove("hideXButton");
+        hideButton.style.display = "block";
+        hideButton.classList.add("showXButton");
+
+        searchResults.classList.add("fadeIn");
+        searchResults.classList.remove("fadeOut");
+    
+        form[0].classList.add("fadeOut");
+        form[0].classList.remove("fadeIn");
+
+    
+        searchResults.style.display = "flex";
+        form[0].style.display = "none";
+    } 
+    else if (value === "showInputForm") {
+        searchBar.classList.remove("expandSearchBar");
+        searchBar.classList.add("hideSearchBar");
+    
+        hideButton.classList.remove("showXButton");
+        hideButton.classList.add("hideXButton");
+    
+        searchResults.classList.remove("fadeIn");
+        searchResults.classList.add("fadeOut");
+        
+        form[0].classList.remove("fadeOut");
+        form[0].classList.add("fadeIn");
+    
+        clearTimeout(hiddenTimeout)
+        hiddenTimeout = setTimeout(() => {
+            searchBar.style.display = "none",
+            hideButton.style.display = "none",
+            searchResults.style.display = "none",
+            form[0].style.display = "flex"}
+            , 1400)
+        // Gömmer searchbar och bakåtknappen efter 1,4 sekunder.
+        // Tar fram formuläret och gömmer sökresultaten.
+        // Utan delay kommer formuläret inte i mitten eftersom sökresultaten inte har gömts ännu.
+    }
+}
+// Funktion som styr hur saker ska bete sig när sökbaren tas fram/göms.
+// Styrs av variabeln value som antingen kan ha värdet showSearchResults eller showInputForm.
+
 let createTableRowsAndDisplayData = (items) => {
 
     for (let i = 0; i < items.length; i++) {
@@ -41,7 +89,8 @@ let clearTable = () => {
         table.children[1].remove();
     }
 }
-// Rensar tabellen så att korrekt antal objekt kan läggas till. Funktion för att undvika upprepning. 
+// Rensar tabellen så att korrekt antal objekt kan läggas till. Funktion för att undvika upprepning.
+// Gör även så att man endast ser det objekt man sökt efter vid sökning på specifika titlar.
 
 let sendFormData = () => {
 
@@ -51,6 +100,7 @@ let sendFormData = () => {
     const title = textFields[0].value;
     const desc = textFields[1].value;
     let age; 
+    let textFieldEntries = {};
     // Sparar undan värden från input-rutorna i formuläret.
 
     !isNaN(textFields[2].value) ?
@@ -58,20 +108,21 @@ let sendFormData = () => {
     textFields[2].value = "", textFields[2].placeholder = "Ange åldergräns i siffror.";
     // Kontrollerar att man endast skriver in siffror i rutan för åldersgräns.
     
-    
-
-    let textFieldEntries = {0: title, 
-                            1: desc,
-                            2: age,};
+    if (title != undefined && desc != undefined && age != undefined) 
+    {
+    textFieldEntries = {0: title, 
+                        1: desc,
+                        2: age,};
     // Lägger in värden i nytt objekt.
-
     existingEntries.push(textFieldEntries);
-    // Lägger in objektet i arrayen existingEntries
-
+    // Lägger endast objektet i arrayen existingEntries ifall alla fält har fått in ett värde.
     localStorage.setItem('shows', JSON.stringify(existingEntries));
     // Sparar undan alla objekt som strängar i localStorage på platsen 'shows'
     // eftersom localStorage inte hanterar objekt.
-    
+    }
+    else {
+        return "";
+    }
 }
 sendButton.addEventListener('click', sendFormData);
 
@@ -135,57 +186,24 @@ let searchData = () => {
         }
     }
 
+    
+
 }
 
 let hiddenTimeout = null;
 
 let hideSearchBar = () => {
-    searchBar.classList.remove("expandSearchBar");
-    searchBar.classList.add("hideSearchBar");
+    displayNewInfoAndHidePreviousInfo("showInputForm");
 
-    hideButton.classList.remove("showXButton");
-    hideButton.classList.add("hideXButton");
-
-    searchResults.classList.remove("fadeIn");
-    searchResults.classList.add("fadeOut");
-    
-    form[0].classList.remove("fadeOut");
-    form[0].classList.add("fadeIn");
-
-    clearTimeout(hiddenTimeout)
-    hiddenTimeout = setTimeout(() => {
-        searchBar.style.display = "none",
-        hideButton.style.display = "none",
-        searchResults.style.display = "none",
-        form[0].style.display = "flex"}
-        , 1400)
-
-    }
-    // Gömmer searchbar och krysset efter 1,4 sekunder.
-    // Tar fram formuläret och gömmer sökresultaten.
+    searchIcon.removeEventListener('click', searchData);
+    // Tar bort event som aktiverar searchData() eftersom sök-ikonen nu öppnar sökrutan.
+}
 
 let viewSearchBar = () => {
-    searchBar.classList.remove("hideSearchBar");
-    searchBar.style.display = "block";
-    searchBar.classList.add("expandSearchBar");
-    searchIcon.removeEventListener('click', viewSearchBar);
-    // Tar bort viewSearchBar eftersom sök-ikonen nu ska användas för att söka
-
-    hideButton.classList.remove("hideXButton");
-    hideButton.style.display = "block";
-    hideButton.classList.add("showXButton");
-
-    searchResults.classList.add("fadeIn");
-    searchResults.classList.remove("fadeOut");
-    
-    form[0].classList.add("fadeOut");
-    form[0].classList.remove("fadeIn");
-
+    displayNewInfoAndHidePreviousInfo("showSearchResults");
     searchIcon.addEventListener('click', searchData);
-    searchResults.style.display = "flex";
-    form[0].style.display = "none";
-    // Visar tabellen, gömmer input formuläret.
 }
+
 
 hideButton.addEventListener('click', hideSearchBar);
 searchIcon.addEventListener('click', viewSearchBar);
@@ -211,6 +229,7 @@ let clearStorage = () => {
             localStorage.clear();
         }
         deleteButton.innerHTML = "Data rensad."
+        deleteButton.style.transition = "all 1s ease";
         deleteButton.style.color = 'white';
         deleteButton.style.background = 'black';
 
