@@ -245,4 +245,16 @@ body form button {
   to {
     opacity: 0;
   }
+}
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+  body main #searchResults {
+    margin-top: -15em;
+    padding: 2em;
+    flex: 0.35;
+  }
+  body main form {
+    padding: 2em;
+    margin-top: -15em;
+    gap: 2em;
+  }
 }/*# sourceMappingURL=style.css.map */
