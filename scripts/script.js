@@ -1,5 +1,3 @@
-
-
 let textFields = document.querySelectorAll(".textField");
 const sendButton = document.getElementById("sendData");
 // Text inputs i formuläret samt skicka data knapp.
@@ -108,8 +106,11 @@ let sendFormData = () => {
     textFields[2].value = "", textFields[2].placeholder = "Ange åldergräns i siffror.";
     // Kontrollerar att man endast skriver in siffror i rutan för åldersgräns.
     
-    if (title != undefined && desc != undefined && age != undefined) 
+    if ((title != "" && title != undefined) && (desc != "" && desc != undefined) && (age != "" && age != undefined)) 
     {
+        console.log(title);
+        console.log(desc);
+        console.log(age);
     textFieldEntries = {0: title, 
                         1: desc,
                         2: age,};

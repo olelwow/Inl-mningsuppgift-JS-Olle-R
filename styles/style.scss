@@ -70,6 +70,9 @@ body {
         cursor: pointer;
 
         &:hover {
+          @include backgroundImage(
+            $backgroundImage: url(/media/icons8-arrow-down-40-green.png)
+          );
         }
       }
 
@@ -150,6 +153,9 @@ body {
 
         td {
           @include tableStyle;
+
+          text-align: center;
+          word-break: break-all;
         }
       }
 
@@ -284,7 +290,6 @@ body {
         margin-top: -15em;
         padding: 2em;
         flex: 0.35;
-        
       }
       form {
         padding: 2em;

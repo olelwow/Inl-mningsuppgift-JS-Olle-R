@@ -36,6 +36,11 @@ body header nav #hideButton {
   margin-right: 2em;
   cursor: pointer;
 }
+body header nav #hideButton:hover {
+  background-image: url(/media/icons8-arrow-down-40-green.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 body header nav #searchBar {
   display: none;
   margin-left: 2em;
@@ -114,6 +119,8 @@ body main #searchResults table td {
   padding: 2em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
+  text-align: center;
+  word-break: break-all;
 }
 body main #searchResults #removeData {
   padding: 0.9em;
