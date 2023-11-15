@@ -120,6 +120,7 @@ let sendFormData = () => {
     localStorage.setItem('shows', JSON.stringify(existingEntries));
     // Sparar undan alla objekt som strängar i localStorage på platsen 'shows'
     // eftersom localStorage inte hanterar objekt.
+    alert("Data sparad");
     }
     else 
     {
@@ -228,7 +229,7 @@ let clearStorage = () => {
         // Tar bort allt i listan förutom table header som ligger på plats 0.
         localStorage.clear();
         dataRensadStyle();
-        
+
     } else {
         localStorage.clear();
         dataRensadStyle();
@@ -240,6 +241,7 @@ let dataRensadStyle = () => {
     deleteButton.style.transition = "all 1s ease";
     deleteButton.style.color = 'white';
     deleteButton.style.background = 'black';
+    alert("Data rensad");
 }
 
 deleteButton.addEventListener('click', clearStorage);
