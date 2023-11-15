@@ -105,14 +105,12 @@ let sendFormData = () => {
 
     !isNaN(textFields[2].value) ?
     age = textFields[2].value :
-    textFields[2].value = "", textFields[2].placeholder = "Ange åldergräns i siffror.";
+    textFields[2].value = "",
+    textFields[2].placeholder = "Ange åldergräns i siffror.";
     // Kontrollerar att man endast skriver in siffror i rutan för åldersgräns.
     
     if ((title != "" && title != undefined) && (desc != "" && desc != undefined) && (age != "" && age != undefined)) 
     {
-        console.log(title);
-        console.log(desc);
-        console.log(age);
     textFieldEntries = {0: title, 
                         1: desc,
                         2: age,};
@@ -123,7 +121,8 @@ let sendFormData = () => {
     // Sparar undan alla objekt som strängar i localStorage på platsen 'shows'
     // eftersom localStorage inte hanterar objekt.
     }
-    else {
+    else 
+    {
         return "";
     }
 }
@@ -223,20 +222,16 @@ setInterval(() => {
 let clearStorage = () => {
     let table = document.getElementById('displayResults').firstElementChild;
 
-    console.log(table.children);
-
     if (table.children.length > 1) {
 
         clearTable();
         // Tar bort allt i listan förutom table header som ligger på plats 0.
         localStorage.clear();
         dataRensadStyle();
-
         
     } else {
         localStorage.clear();
         dataRensadStyle();
-        console.log("Empty table");
     }
 }
 
