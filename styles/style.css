@@ -9,6 +9,8 @@ body {
   background-position: center;
   background-color: rgba(26, 25, 24, 0.952);
   background-blend-mode: lighten;
+  display: flex;
+  flex-direction: column;
 }
 body header {
   padding-top: 1em;
@@ -84,7 +86,7 @@ body main #searchResults {
   background-color: rgba(26, 25, 24, 0.952);
   padding: 5em;
   padding-top: 2em;
-  margin-top: -20em;
+  margin-top: -2em;
   border-radius: 15px;
   height: -moz-fit-content;
   height: fit-content;
@@ -136,7 +138,7 @@ body main #searchResults #removeData {
 body form {
   background-color: rgba(26, 25, 24, 0.952);
   padding: 5em;
-  margin-top: -6em;
+  margin-top: 3em;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -146,6 +148,7 @@ body form {
 }
 body form h1 {
   color: white;
+  text-align: center;
 }
 body form input {
   padding: 0.9em;
@@ -169,6 +172,18 @@ body form button {
   border-radius: 15px;
   width: 400px;
   font-size: medium;
+  text-align: center;
+}
+body footer {
+  margin-top: -5em;
+  position: fixed;
+  color: white;
+  padding: 0.5em;
+  background-color: rgba(26, 25, 24, 0.952);
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 25px;
   text-align: center;
 }
 
@@ -258,13 +273,13 @@ body form button {
 }
 @media screen and (min-width: 1200px) and (max-width: 1600px) {
   body main #searchResults {
-    margin-top: -15em;
+    margin-top: 2em;
     padding: 2em;
     flex: 0.35;
   }
   body main form {
-    padding: 2em;
-    margin-top: -15em;
+    padding: 3em;
+    margin-top: 2em;
     gap: 2em;
   }
 }/*# sourceMappingURL=style.css.map */
