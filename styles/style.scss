@@ -153,15 +153,18 @@ body {
 
         td {
           @include tableStyle;
-
           text-align: center;
           word-break: break-all;
         }
       }
 
+      #notFound {
+        display: none;
+      }
+
       #removeData {
         @include formComponentSize;
-        margin-top: 5em;
+        margin-top: 3em;
       }
     }
   }

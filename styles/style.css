@@ -122,13 +122,16 @@ body main #searchResults table td {
   text-align: center;
   word-break: break-all;
 }
+body main #searchResults #notFound {
+  display: none;
+}
 body main #searchResults #removeData {
   padding: 0.9em;
   border-radius: 15px;
   width: 400px;
   font-size: medium;
   text-align: center;
-  margin-top: 5em;
+  margin-top: 3em;
 }
 body form {
   background-color: rgba(26, 25, 24, 0.952);

@@ -12,6 +12,7 @@ const hideButton = document.getElementById("hideButton");
 // Sökknapp, sökfält, ikon för göm sökfält
 
 const searchResults = document.getElementById("searchResults");
+const notFound = document.getElementById("notFound");
 // Ruta för sökresultat.
 
 const form = document.getElementsByTagName("form");
@@ -81,6 +82,7 @@ let createTableRowsAndDisplayData = (items) => {
 }
 
 // ^ Försökte få denna funktion att fungera både på displayAllData samt searchData men utan framgång.
+// Prövade att deklarera en optional variabel som skulle styra sökningen men det pajade hela funktionen.
 
 let clearTable = () => {
     while (table.children.length != 1) {
@@ -173,22 +175,22 @@ let searchData = () => {
             // Ifall sökordet finns skapas en ny tabellrad upp på samma sätt som när man hämtar all data.
             
             searchBar.classList.remove("badSearchValue");
+            notFound.style.display = "none";
             searchBar.placeholder = "Sök efter TV-program med titel eller * för att se alla titlar";
             return "";
         } 
         else if (searchValue == "*") {
+            notFound.style.display = "none";
             displayAllData();
         }
         else {
             searchBar.value = "";
             searchBar.classList.add("badSearchValue");
             searchBar.placeholder = searchValue + " finns inte i databasen.";
+            notFound.style.display = "block";
             // Ifall sökordet inte finns får man en error text samt färgen ändras till röd på placeholder.
         }
     }
-
-    
-
 }
 
 let hiddenTimeout = null;
@@ -224,20 +226,25 @@ let clearStorage = () => {
     console.log(table.children);
 
     if (table.children.length > 1) {
-        while (table.children.length != 1) {
-            table.children[1].remove();
-            // Tar bort allt i listan förutom table header som ligger på plats 0.
-            localStorage.clear();
-        }
-        deleteButton.innerHTML = "Data rensad."
-        deleteButton.style.transition = "all 1s ease";
-        deleteButton.style.color = 'white';
-        deleteButton.style.background = 'black';
+
+        clearTable();
+        // Tar bort allt i listan förutom table header som ligger på plats 0.
+        localStorage.clear();
+        dataRensadStyle();
 
         
     } else {
+        localStorage.clear();
+        dataRensadStyle();
         console.log("Empty table");
     }
+}
+
+let dataRensadStyle = () => {
+    deleteButton.innerHTML = "Data rensad."
+    deleteButton.style.transition = "all 1s ease";
+    deleteButton.style.color = 'white';
+    deleteButton.style.background = 'black';
 }
 
 deleteButton.addEventListener('click', clearStorage);
