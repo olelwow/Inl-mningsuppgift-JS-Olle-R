@@ -185,6 +185,7 @@ body footer {
   width: 200px;
   height: 25px;
   text-align: center;
+  border-radius: 3px;
 }
 
 .expandSearchBar {
